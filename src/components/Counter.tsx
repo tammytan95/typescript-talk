@@ -1,15 +1,21 @@
-import * as React from "react";
+import React, { FunctionComponent } from "react";
 
-export interface CounterProps { counter: Number }
-
-// 'HelloProps' describes the shape of props.
-// State is never set so we use the '{}' type.
-export class Counter extends React.Component<CounterProps, {}> {
-    render() {
-        return <div>
-          <p>
-            {this.props.counter}
-          </p>
-        </div>
-    }
+interface CounterProps {
+  name: string;
+  currentCounter: number;
+  increment: () => void;
 }
+
+export const Counter: FunctionComponent<CounterProps> = ({
+  currentCounter,
+  increment,
+  name
+}) => {
+  return (
+    <>
+      <h2>{name}</h2>
+      <div>{currentCounter}</div>
+      <button onClick={() => increment()}>Increment</button>
+    </>
+  );
+};
